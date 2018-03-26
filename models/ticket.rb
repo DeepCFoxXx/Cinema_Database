@@ -26,4 +26,14 @@ class Ticket
     @id = ticket['id'].to_i
   end
 
-end   
+  def film
+    sql = "SELECT *
+    FROM films
+    WHERE films.id = $1"
+    values = [@film_id]
+    film_data = SqlRunner.run(sql, values)
+    film = Film.map_item(film_data)
+    return film
+  end
+
+end
