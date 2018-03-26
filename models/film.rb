@@ -54,4 +54,14 @@ class Film
     return ordered.first
   end
 
+  def Film.map_items(film_data)
+    result = film_data.map { |film| Film.new( film ) }
+    return result
+  end
+
+  def Film.map_item(film_data)
+    result = Film.map_items(film_data)
+    return result.first
+  end
+
 end
