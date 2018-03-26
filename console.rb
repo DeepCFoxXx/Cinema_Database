@@ -56,5 +56,37 @@ ticket7 = Ticket.new({'customer_id' => customer4.id, 'film_id' => film4.id})
 ticket7.save
 
 
+screening1 = Screening.new({'film_id' => film1.id, 'start_time' => '2017-01-08 04:00:00', 'empty_seats' => 20})
+screening1.save
+
+screening2 = Screening.new({'film_id' => film2.id, 'start_time' => '2017-01-09 04:00:00', 'empty_seats' => 15})
+screening2.save
+
+screening3 = Screening.new({'film_id' => film3.id, 'start_time' => '2017-01-10 04:00:00', 'empty_seats' => 1})
+screening3.save
+
+screening4 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-11 04:00:00', 'empty_seats' => 20})
+screening4.save
+
+screening5 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-12 04:00:00', 'empty_seats' => 10})
+screening5.save
+
+
+customer1.buy_ticket(screening2)
+
+customer2.buy_ticket(screening2)
+
+customer3.buy_ticket(screening2)
+
+customer4.buy_ticket(screening2)
+
+customer1.buy_ticket(screening3)
+
+customer1.buy_ticket(screening4)
+
+customer2.buy_ticket(screening4)
+
+customer3.buy_ticket(screening5)
+
 binding.pry
 nil
