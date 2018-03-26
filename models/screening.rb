@@ -62,4 +62,10 @@ class Screening
     return Screening.map_items(screening_data)
   end
 
+  def self.delete_all()
+    sql = "DELETE FROM screenings"
+    values = []
+    SqlRunner.run(sql, values)
+  end
+
 end
