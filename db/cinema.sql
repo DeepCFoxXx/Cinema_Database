@@ -1,4 +1,5 @@
 DROP TABLE tickets;
+DROP TABLE screenings;
 DROP TABLE customers;
 DROP TABLE films;
 
@@ -12,6 +13,13 @@ CREATE TABLE customers (
   id SERIAL8 PRIMARY KEY,
   name VARCHAR(255),
   funds NUMERIC
+);
+
+CREATE TABLE screenings (
+  id SERIAL8 PRIMARY KEY,
+  film_id INT8 REFERENCES films(id),
+  start_time TIMESTAMP,
+  empty_seats INT2
 );
 
 CREATE TABLE tickets (
