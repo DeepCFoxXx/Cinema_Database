@@ -63,4 +63,10 @@ class Customer
     return Customer.map_items(customer_data)
   end
 
+  def Customer.delete_all()
+    sql = "DELETE FROM customers"
+    values = []
+    SqlRunner.run(sql, values)
+  end
+
 end
