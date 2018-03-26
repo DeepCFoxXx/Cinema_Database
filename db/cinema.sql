@@ -19,3 +19,7 @@ CREATE TABLE tickets (
   customer_id INT8 REFERENCES customers(id),
   screening_id INT8 REFERENCES screenings(id)
 );
+
+--  createdb cinema
+--  psql -d cinema -f db/cinema.sql
+--  ruby db/console.rb
