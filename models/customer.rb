@@ -44,8 +44,10 @@ class Customer
   def films()
     sql = "SELECT films.*
     FROM films
+    INNER JOIN screenings
+    ON films.id = screenings.film_id
     INNER JOIN tickets
-    ON tickets.film_id = films.id
+    ON tickets.screening_id = screenings.id
     WHERE tickets.customer_id = $1"
     values = [@id]
     film_data = SqlRunner.run(sql, values)
@@ -56,14 +58,14 @@ class Customer
     return films().count
   end
 
-  def Customer.all()
+  def self.all()
     sql = "SELECT * FROM customers"
     values = []
     customer_data = SqlRunner.run(sql, values)
     return Customer.map_items(customer_data)
   end
 
-  def Customer.delete_all()
+  def self.delete_all()
     sql = "DELETE FROM customers"
     values = []
     SqlRunner.run(sql, values)
