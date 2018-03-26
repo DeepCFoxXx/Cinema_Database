@@ -52,4 +52,15 @@ class Customer
     return Film.map_items(film_data)
   end
 
+  def number_of_tickets_bought()
+    return films().count
+  end
+
+  def Customer.all()
+    sql = "SELECT * FROM customers"
+    values = []
+    customer_data = SqlRunner.run(sql, values)
+    return Customer.map_items(customer_data)
+  end
+
 end
