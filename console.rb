@@ -1,3 +1,4 @@
+require( 'pry-byebug' )
 require_relative( 'models/ticket.rb' )
 require_relative( 'models/customer.rb' )
 require_relative( 'models/film.rb' )
@@ -53,3 +54,7 @@ ticket6.save
 
 ticket7 = Ticket.new({'customer_id' => customer4.id, 'film_id' => film4.id})
 ticket7.save
+
+
+binding.pry
+nil
