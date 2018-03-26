@@ -76,4 +76,16 @@ class Screening
     return Screening.map_item(screening_data)
   end
 
+  def self.most_popular()
+    sql = "SELECT screening_id,
+    COUNT(*) AS count
+    FROM tickets
+    GROUP BY screening_id
+    ORDER BY count
+    DESC LIMIT 1;"
+    values = []
+    most_popular_id = SqlRunner.run(sql, values).first["screening_id"].to_i
+    Screening.find(most_popular_id)
+  end
+
 end
