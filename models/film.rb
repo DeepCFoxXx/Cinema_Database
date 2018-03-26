@@ -42,4 +42,16 @@ class Film
     return customers.count
   end
 
+  def self.all()
+    sql = "SELECT * FROM films"
+    values = []
+    film_data = SqlRunner.run(sql, values)
+    return Film.map_items(film_data)
+  end
+
+  def self.most_viewers()
+    ordered = Film.all.sort! { |film1,film2| film1.number_of_viewers <=> film2.number_of_viewers }
+    return ordered.first
+  end
+
 end
