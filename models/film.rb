@@ -26,4 +26,20 @@ class Film
     @id = film['id'].to_i
   end
 
-end   
+  def customers()
+    sql = "SELECT customers.*
+    FROM customers
+    INNER JOIN tickets
+    ON tickets.customer_id = customers.id
+    WHERE tickets.film_id = $1"
+    values = [@id]
+    customer_data = SqlRunner.run(sql, values)
+    customers = Customer.map_items(customer_data)
+    return customers
+  end
+
+  def number_of_viewers()
+    return customers.count
+  end
+
+end
