@@ -88,4 +88,14 @@ class Screening
     Screening.find(most_popular_id)
   end
 
+  def self.map_items(screening_data)
+    result = screening_data.map { |screening| Screening.new( screening ) }
+    return result
+  end
+
+  def self.map_item(screening_data)
+    result = Screening.map_items(screening_data)
+    return result.first
+  end
+
 end
