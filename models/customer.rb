@@ -69,4 +69,14 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
+  def Customer.map_items(customer_data)
+    result = customer_data.map { |customer| Customer.new( customer ) }
+    return result
+  end
+
+  def self.map_item(customer_data)
+    result = Customer.map_items(customer_data)
+    return result.first
+  end
+
 end
