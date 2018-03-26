@@ -54,8 +54,33 @@ class Film
     return customers
   end
 
+  def screenings()
+    sql = "SELECT * FROM screenings
+    WHERE film_id = $1"
+    values = [@id]
+    screening_data = SqlRunner.run(sql, values)
+    return Screening.map_items(screening_data)
+  end
+
+  def tickets()
+    sql = "SELECT tickets.*
+    FROM tickets
+    INNER JOIN screenings
+    ON tickets.screening_id = screenings.id
+    WHERE screenings.film_id = $1"
+    values = [@id]
+    ticket_data = SqlRunner.run(sql, values)
+    return Ticket.map_items(ticket_data)
+  end
+
   def number_of_viewers()
     return customers.count
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM films"
+    values = []
+    SqlRunner.run(sql, values)
   end
 
   def self.all()
