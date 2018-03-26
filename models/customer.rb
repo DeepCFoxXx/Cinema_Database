@@ -58,6 +58,21 @@ class Customer
     return films().count
   end
 
+  def buy_ticket(screening)
+    film = screening.film
+    price = film.price
+    return unless screening.empty_seats > 0
+    return unless customer_can_afford_film?(price)
+    Ticket.new('customer_id' => @id, 'screening_id' => screening.id).save()
+    @funds -= price
+    screening.sell_ticket()
+    update()
+  end
+
+  def customer_can_afford_film?(price)
+    return price <= @funds
+  end
+
   def self.all()
     sql = "SELECT * FROM customers"
     values = []
